@@ -92,7 +92,13 @@
             flex-wrap: wrap;
         }
         &-box {
-            display: none;
+            right: auto;
+        }
+        &__content {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 32px;
         }
     }
     .filter {
