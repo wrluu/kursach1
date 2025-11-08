@@ -86,15 +86,16 @@
             height: 100%;
             margin: 0;
             left: 0;
+            z-index: 1;
         }
         label {
             display: block;
             width: 100%;
             height: 100%;
             cursor: pointer;
+            box-sizing: border-box;
+            position: relative;
         }
-    }
-    &__color-item {
         &:nth-child(1) label {
             background-color: rgba(255, 255, 255, 1);
             border: 1px solid rgba(136, 136, 136, 1);
@@ -138,6 +139,23 @@
         &:nth-child(14) label {
             background-color: rgba(255, 101, 166, 1);
         }
+        input[type="checkbox"]:checked+label {
+            border: 1px solid #000;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 3px;
+                top: 8px;
+                transform: translateY(-50%);
+                width: 9px;
+                height: 9px;
+                background-image: url("img/galochka.svg");
+                background-repeat: no-repeat;
+            }
+        }
+        &:nth-child(2) input[type="checkbox"]:checked+label::after {
+            filter: invert(1);
+        }
     }
 }
 
@@ -160,6 +178,10 @@ input[type="radio"]+label::before {
     height: 15px;
     border: 1px solid rgba(136, 136, 136, 1);
     border-radius: 20px;
+}
+
+input[type="radio"]:checked+label::before {
+    border-color: #000;
 }
 
 input[type="radio"]:checked+label::after {
@@ -194,13 +216,8 @@ input[type="checkbox"]+label {
     border: 1px solid rgba(136, 136, 136, 1);
 }
 
-.filtering__color-item input[type="checkbox"]+label::before {
-    content: "";
-    position: absolute;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    border: none;
+.filtering__subtitle input[type="checkbox"]:checked+label::before {
+    border-color: #000;
 }
 
 .filtering__subtitle input[type="checkbox"]:checked+label::after {
@@ -213,22 +230,6 @@ input[type="checkbox"]+label {
     height: 9px;
     background-image: url("img/galochka.svg");
     background-repeat: no-repeat;
-}
-
-.filtering__color-item input[type="checkbox"]:checked+label::after {
-    left: 5px;
-    top: 10px;
-    content: "";
-    position: absolute;
-    transform: translateY(-50%);
-    width: 9px;
-    height: 9px;
-    background-image: url("img/galochka.svg");
-    background-repeat: no-repeat;
-}
-
-input[type="range"] {
-    width: 190.5px;
 }
 
 .range {
@@ -281,15 +282,6 @@ input[type="range"] {
 
 .range__input:nth-child(2) {
     z-index: 1;
-}
-
-.color-option {
-    padding-left: 25px;
-    display: flex;
-    width: 190px;
-    row-gap: 29px;
-    column-gap: 29px;
-    flex-wrap: wrap;
 }
 
 .range__label {
